@@ -59,6 +59,14 @@ public class Reader implements AutoCloseable {
         }
     }
 
+    public static class Ptr {
+        Item item;
+
+        Ptr(Item item) {
+            this.item = item;
+        }
+    }
+
     Item findKey1(long key, long start, long end) throws IOException {
         if (start > end) {
             return null;
@@ -98,6 +106,10 @@ public class Reader implements AutoCloseable {
         if (v1 == null) {
             return null;
         }
+        return get(v1, key2);
+    }
+
+    private byte[] get(Item v1, long key2) throws IOException {
         Item v2 = findKey2(key2, v1.off, 0, v1.num - 1);
         if (v2 == null) {
             return null;
@@ -108,6 +120,33 @@ public class Reader implements AutoCloseable {
             buffer.get(b, 0, (int)v2.num);
         }
         return b;
+    }
+
+    public byte[][] get(long key1, long[] keys2) throws IOException {
+        Item v1 = findKey1(key1, 0, size1-1);
+        if (v1 == null) {
+            return null;
+        }
+        byte[][] vals = new byte[keys2.length][];
+        for (int i = 0; i < keys2.length; i++) {
+            vals[i] = get(v1, keys2[i]);
+        }
+        return vals;
+    }
+
+    public Ptr get(long key1) throws IOException {
+        Item v1 = findKey1(key1, 0, size1-1);
+        if (v1 == null) {
+            return null;
+        }
+        return new Ptr(v1);
+    }
+
+    public byte[] get(Ptr p1, long key2) throws IOException {
+        if (p1 == null) {
+            return null;
+        }
+        return get(p1.item, key2);
     }
 
     public void close() throws IOException {
