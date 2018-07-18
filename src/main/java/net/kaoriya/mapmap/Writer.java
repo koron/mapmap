@@ -2,6 +2,7 @@ package net.kaoriya.mapmap;
 
 import java.io.IOException;
 import java.io.File;
+import java.lang.AutoCloseable;
 import java.io.RandomAccessFile;
 import java.util.TreeMap;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class Writer {
         v.put(Long.valueOf(key2), valueOffset);
         dataFile.writeInt(value.length);
         dataFile.write(value);
-        valueOffset += value.length;
+        valueOffset += 4 + value.length;
     }
 
     void writeIndex() throws IOException {
