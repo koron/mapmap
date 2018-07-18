@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
-public class Reader {
+public class Reader implements AutoCloseable {
 
     static final byte[] header1 = new byte[]{'M', 'M', '0', '1'};
 
@@ -53,6 +53,10 @@ public class Reader {
             this.num = num;
             this.off = off;
         }
+
+        public String toString() {
+            return String.format("Item{key:0x%x num:%d off:0x%x}", key, num, off);
+        }
     }
 
     Item findKey1(long key, long start, long end) throws IOException {
@@ -85,8 +89,8 @@ public class Reader {
             return findKey2(key, base, mid + 1, end);
         }
         long off = buffer.getLong((int)(curr + 8));
-        long num = buffer.getLong((int)off);
-        return new Item(key, num, off + 8);
+        long num = buffer.getInt((int)off);
+        return new Item(key, num, off + 4);
     }
 
     public byte[] get(long key1, long key2) throws IOException {
@@ -100,7 +104,8 @@ public class Reader {
         }
         byte[] b = new byte[(int)v2.num];
         if (v2.num > 0) {
-            buffer.get(b, (int)v2.off, (int)v2.num);
+            buffer.position((int)v2.off);
+            buffer.get(b, 0, (int)v2.num);
         }
         return b;
     }
