@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Writer {
+public class Writer implements AutoCloseable {
 
     RandomAccessFile dataFile;
 
