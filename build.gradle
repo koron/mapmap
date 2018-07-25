@@ -27,3 +27,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+task benchmarkPrepare(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'net.kaoriya.mapmap.benchmark.Prepare'
+}
+
+task benchmarkQuery(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'net.kaoriya.mapmap.benchmark.Query'
+}
