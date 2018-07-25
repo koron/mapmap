@@ -52,7 +52,9 @@ public class Writer implements AutoCloseable {
         }
         v.put(Long.valueOf(key2), valueOffset);
         dataFile.writeInt(value.length);
-        dataFile.write(value);
+        if (value.length > 0) {
+            dataFile.write(value);
+        }
         valueOffset += 4 + value.length;
     }
 
