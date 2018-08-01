@@ -23,7 +23,7 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     //implementation 'com.google.guava:guava:23.0'
 
-    compile 'com.spotify.sparkey:sparkey:2.1.0'
+    compile 'com.spotify.sparkey:sparkey:2.3.1'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'

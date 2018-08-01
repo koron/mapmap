@@ -7,7 +7,7 @@ import com.spotify.sparkey.Sparkey;
 import com.spotify.sparkey.SparkeyReader;
 
 public class Query {
-    static double rate1 = 0.2;
+    static double rate1 = 1.0;
     static double rate2 = 0.2;
     static int nKey2 = 10;
 
