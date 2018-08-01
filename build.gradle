@@ -23,6 +23,8 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     //implementation 'com.google.guava:guava:23.0'
 
+    compile 'com.spotify.sparkey:sparkey:2.1.0'
+
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
@@ -35,4 +37,14 @@ task benchmarkPrepare(type: JavaExec) {
 task benchmarkQuery(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'net.kaoriya.mapmap.benchmark.Query'
+}
+
+task benchmarkSparkeyPrepare(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'net.kaoriya.mapmap.benchmark.sparkey.Prepare'
+}
+
+task benchmarkSparkeyQuery(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'net.kaoriya.mapmap.benchmark.sparkey.Query'
 }
