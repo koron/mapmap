@@ -77,3 +77,37 @@ Avg. time: 1593 nanosec
 Hit rate (query): 0.178613 (357225/2000000)
 Hit rate (result): 0.224033 (800303/3572250)
 ```
+
+## mapmap 2 (個別問い合わせ)
+
+> rate1 = 1.0; rate2 = 0.2; nKey2 = 10;
+
+```
+Avg. time: 1825 nanosec
+Hit rate (query): 0.892331 (1784661/2000000)
+Hit rate (result): 0.224143 (4000199/17846610)
+```
+
+> rate1 = 1.0; rate2 = 1.0; nKey2 = 10;
+
+```
+Avg. time: 2244 nanosec
+Hit rate (query): 1.000000 (2000000/2000000)
+Hit rate (result): 1.000000 (20000000/20000000)
+```
+
+> rate1 = 0.2; rate2 = 1.0; nKey2 = 10;
+
+```
+Avg. time: 1103 nanosec
+Hit rate (query): 0.199642 (399284/2000000)
+Hit rate (result): 1.000000 (3992840/3992840)
+```
+
+> rate1 = 0.2; rate2 = 0.2; nKey2 = 10;
+
+```
+Avg. time: 952 nanosec
+Hit rate (query): 0.178505 (357010/2000000)
+Hit rate (result): 0.224069 (799950/3570100)
+```

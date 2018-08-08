@@ -39,6 +39,11 @@ task benchmarkQuery(type: JavaExec) {
     main = 'net.kaoriya.mapmap.benchmark.Query'
 }
 
+task benchmarkQueryEach(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'net.kaoriya.mapmap.benchmark.QueryEach'
+}
+
 task benchmarkSparkeyPrepare(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'net.kaoriya.mapmap.benchmark.sparkey.Prepare'
